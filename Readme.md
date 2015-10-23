@@ -1,6 +1,6 @@
 # Switch
 
-![Build Status](https://secure.travis-ci.org/chemzqm/switch.png)(http://travis-ci.org/chemzqm/switch)]
+[![Build Status](https://secure.travis-ci.org/chemzqm/switch.png)](http://travis-ci.org/chemzqm/switch)
 
 Switch element `style` `className` `property`
 
