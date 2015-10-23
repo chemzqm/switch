@@ -1,6 +1,14 @@
 var classes = require('classes')
 var computedStyle = require('computed-style')
 
+/**
+ * Switch element `style`,`className` or `property`
+ *
+ * @param {Element} first Element
+ * @param {Element} second Element
+ * @param {Object} opt options object
+ * @api public
+ */
 module.exports = function (first, second, opt) {
   for (var k in opt) {
     var prop = opt[k]
