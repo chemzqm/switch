@@ -1,6 +1,7 @@
 # Switch
 
-[![Build Status](https://secure.travis-ci.org/chemzqm/switch.png)](http://travis-ci.org/chemzqm/switch)
+[![NPM version](https://img.shields.io/npm/v/switch.svg?style=flat-square)](https://www.npmjs.com/package/switch)
+[![Build Status](https://img.shields.io/travis/chemzqm/switch/master.svg?style=flat-square)](http://travis-ci.org/chemzqm/switch)
 
 Switch element `style` `className` `property`
 
