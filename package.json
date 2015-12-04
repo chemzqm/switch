@@ -1,6 +1,6 @@
 {
   "name": "switch-component",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "make element switchable",
   "main": "index.js",
   "scripts": {
