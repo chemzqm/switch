@@ -5,6 +5,8 @@
 
 Switch element `style` `className` `property`
 
+**Notice** computed style is used for style switch, for some property like color the style property would always be rgb.
+
 ## Install
 
     npm i switch-component
@@ -18,6 +20,7 @@ switcher(firstEl, secondEl, {style: 'visibility'})
 switcher(firstEl, secondEl, {className: 'active'})
 switcher(firstEl, secondEl, {property: 'textContent'})
 ```
+`style` `className` and `property` value could be string or array of string
 
 See [test.js](https://github.com/chemzqm/switch/blob/master/test/test.js)
 

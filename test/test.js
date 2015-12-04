@@ -1,7 +1,7 @@
 /*global describe, it, beforeEach, afterEach*/
 var assert = require('assert')
 var switcher = require('..')
-var computedStyle = require('computed-style')
+var classes = require('classes')
 
 ;(function () {
   var css = '.lower { height: 10px }',
@@ -42,6 +42,17 @@ describe('switchable component', function () {
     assert.equal(secondEl.style.display, 'none')
   })
 
+  it('should switch display and color', function () {
+    firstEl.style.display = 'none'
+    firstEl.style.color = '#000000'
+    secondEl.style.color = '#a0a0a0'
+    switcher(firstEl, secondEl, {style: ['display', 'color']})
+    assert.equal(firstEl.style.display, 'block')
+    assert.equal(firstEl.style.color, 'rgb(160, 160, 160)')
+    assert.equal(secondEl.style.display, 'none')
+    assert.equal(secondEl.style.color, 'rgb(0, 0, 0)')
+  })
+
   it('should switch visibility', function () {
     firstEl.style.visibility = 'hidden'
     switcher(firstEl, secondEl, {style: 'visibility'})
@@ -52,7 +63,6 @@ describe('switchable component', function () {
   it('should switch style defined by className', function () {
     firstEl.style.height = '100px'
     secondEl.className = 'lower'
-    var h = computedStyle(secondEl, 'height')
     switcher(firstEl, secondEl, {style: 'height'})
     assert.equal(firstEl.style.height, '10px')
     assert.equal(secondEl.style.height, '100px')
@@ -64,6 +74,26 @@ describe('switchable component', function () {
     switcher(firstEl, secondEl, {className: 'active'})
     assert.equal(firstEl.className, 'first')
     assert.equal(secondEl.className, 'second active')
+  })
+
+  it('should switch classNames', function () {
+    firstEl.className = 'first active'
+    secondEl.className = 'second inactive'
+    switcher(firstEl, secondEl, {className: ['active', 'inactive']})
+    assert(classes(firstEl).has('inactive'))
+    assert(classes(secondEl).has('active'))
+  })
+
+  it('should switch propertis', function () {
+    firstEl.textContent = 'tobi'
+    secondEl.textContent = 'bear'
+    firstEl.className = 'first'
+    secondEl.className = 'second'
+    switcher(firstEl, secondEl, {property: ['textContent', 'className']})
+    assert(firstEl.textContent === 'bear')
+    assert(secondEl.textContent === 'tobi')
+    assert(firstEl.className === 'second')
+    assert(secondEl.className === 'first')
   })
 
   it('should switch property', function () {

@@ -1,5 +1,7 @@
 var classes = require('classes')
 var computedStyle = require('computed-style')
+var isArray = Array.isArray
+if (!isArray) throw new Error('isArray is not supported need polyfill')
 
 /**
  * Switch element `style`,`className` or `property`
@@ -28,13 +30,25 @@ module.exports = function (first, second, opt) {
   }
 }
 
+function each(arr, first, second, fn) {
+  arr.forEach(function (v) {
+    fn(first, second, v)
+  })
+}
+
 function switchStyle(first, second, prop) {
+  if (isArray(prop)) {
+    return each(prop, first, second, switchStyle)
+  }
   var tmp = computedStyle(second, prop)
   second.style[prop] = computedStyle(first, prop)
   first.style[prop] = tmp
 }
 
 function switchClasses(first, second, name) {
+  if (isArray(name)) {
+    return each(name, first, second, switchClasses)
+  }
   if (classes(first).has(name)) {
     classes(first).remove(name)
     classes(second).add(name)
@@ -45,6 +59,9 @@ function switchClasses(first, second, name) {
 }
 
 function switchProperty(first, second, prop) {
+  if (isArray(prop)) {
+    return each(prop, first, second, switchProperty)
+  }
   var tmp = second[prop]
   second[prop] = first[prop]
   first[prop] = tmp
